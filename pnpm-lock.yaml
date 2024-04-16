@@ -14,11 +14,14 @@ devDependencies:
     specifier: ^5.0.5
     version: 5.0.5
   svag-lint:
-    specifier: ^0.0.17
-    version: 0.0.17(prettier@3.2.5)
+    specifier: ^0.0.18
+    version: 0.0.18(prettier@3.2.5)
+  svag-prettier:
+    specifier: ^0.0.3
+    version: 0.0.3
   svag-ts:
-    specifier: ^0.0.13
-    version: 0.0.13
+    specifier: ^0.0.14
+    version: 0.0.14
   ts-node:
     specifier: ^10.9.2
     version: 10.9.2(@types/node@20.12.7)(typescript@5.4.5)
@@ -1175,8 +1178,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /svag-lint@0.0.17(prettier@3.2.5):
-    resolution: {integrity: sha512-Mqj1+4dQNfQ+kOBE3Tk8MdYxbhcqejGXnpXHHmy4rlBtXmH3XrrH3pDQ570Ix40r43cE3yLD7J4zqcUYB12Tbg==}
+  /svag-lint@0.0.18(prettier@3.2.5):
+    resolution: {integrity: sha512-vOowGYXUPVIr0ZeHckzDuyXQjchld7QCKn4F4wAe/sprFNCLvx3Ka/DVQCuK0BhxBQgb8BlX1omJ7F/fKsL0hA==}
     dependencies:
       '@eslint/js': 9.0.0
       eslint: 9.0.0
@@ -1192,8 +1195,14 @@ packages:
       - supports-color
     dev: true
 
-  /svag-ts@0.0.13:
-    resolution: {integrity: sha512-ArQoNVzB/sr4b9TdwoYGodbfkaKBj2kOmoLHyKLGz7lEhq5i2J50/OE5ER6BpzT3rvP7DuCdJDF/ZkYjGIXKMA==}
+  /svag-prettier@0.0.3:
+    resolution: {integrity: sha512-i/aepZoKxKTc9rmEAOjWfmvGJ8Puf7BuGDIxFZqLffm6jXGjF1uj66YH0FDvXVwY7DG4zRRLNAYmNKDf8VSXtw==}
+    dependencies:
+      prettier: 3.2.5
+    dev: true
+
+  /svag-ts@0.0.14:
+    resolution: {integrity: sha512-3r8ea4WbodAZpC+4kU+dNjbGpYsaToh1a18fitDYNZ2j1kkxUlXBmKzDLlSW9em3RrFaX3liqFbE1EP7XI2GDg==}
     dependencies:
       typescript: 5.4.5
     dev: true

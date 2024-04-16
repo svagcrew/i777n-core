@@ -28,8 +28,9 @@
   },
   "devDependencies": {
     "rimraf": "^5.0.5",
-    "svag-lint": "^0.0.17",
-    "svag-ts": "^0.0.13",
+    "svag-lint": "^0.0.18",
+    "svag-prettier": "^0.0.3",
+    "svag-ts": "^0.0.14",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   }
