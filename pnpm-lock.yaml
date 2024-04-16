@@ -14,8 +14,8 @@ devDependencies:
     specifier: ^5.0.5
     version: 5.0.5
   svag-lint:
-    specifier: ^0.0.30
-    version: 0.0.30(@types/node@20.12.7)(prettier@3.2.5)
+    specifier: ^0.0.31
+    version: 0.0.31(@types/node@20.12.7)(prettier@3.2.5)
   svag-prettier:
     specifier: ^0.0.6
     version: 0.0.6
@@ -1354,8 +1354,8 @@ packages:
       - babel-plugin-macros
     dev: true
 
-  /svag-lint@0.0.30(@types/node@20.12.7)(prettier@3.2.5):
-    resolution: {integrity: sha512-zT27NFda31czmvp51br0PUnEVlBlDtBjHRSNRdGqO0rKj5BajnfzEs/MdwVCxBn6o8m7OAQ6JevhqmqfGS97dw==}
+  /svag-lint@0.0.31(@types/node@20.12.7)(prettier@3.2.5):
+    resolution: {integrity: sha512-YWyLv0AOd1VDcc8Uz/laBH7kiqjJgvVNiKrpMv05xf0Sbou4/60KceIjbQ28LVoLGwW/4eNLMMHB6GQTAkG5CQ==}
     hasBin: true
     dependencies:
       '@eslint/js': 9.0.0
