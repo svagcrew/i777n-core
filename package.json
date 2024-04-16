@@ -1,6 +1,6 @@
 {
   "name": "i777n-core",
-  "version": "0.0.17",
+  "version": "0.1.0",
   "homepage": "https://github.com/svagcrew/i777n-core",
   "repository": {
     "type": "git",
@@ -29,8 +29,8 @@
   },
   "devDependencies": {
     "rimraf": "^5.0.5",
-    "svag-lint": "^0.0.32",
-    "svag-prettier": "^0.0.6",
+    "svag-lint": "^0.1.1",
+    "svag-prettier": "^0.1.1",
     "svag-ts": "^0.0.17",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
