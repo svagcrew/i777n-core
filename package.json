@@ -18,8 +18,8 @@
     "dist/**/*"
   ],
   "scripts": {
-    "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache .",
-    "prettify": "prettier --loglevel warn --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss}' '!**/{node_modules,dist}/**/*'",
+    "lint": "svag-lint lint",
+    "prettify": "svag-prettier prettify",
     "types": "tsc --noEmit",
     "build": "rimraf ./dist && tsc --build",
     "watch": "tsc --watch --preserveWatchOutput --pretty"
