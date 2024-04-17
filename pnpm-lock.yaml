@@ -17,8 +17,8 @@ devDependencies:
     specifier: ^0.1.5
     version: 0.1.5(@types/node@20.12.7)(prettier@3.2.5)
   svag-prettier:
-    specifier: ^0.1.1
-    version: 0.1.1
+    specifier: ^0.1.2
+    version: 0.1.2
   svag-ts:
     specifier: ^0.1.2
     version: 0.1.2
@@ -1379,8 +1379,8 @@ packages:
       - supports-color
     dev: true
 
-  /svag-prettier@0.1.1:
-    resolution: {integrity: sha512-dgZ3oZhnD37Awv7geiGFqpI2jQXMT83U21wsBMYhmoV7xuYS5puLu37vnkYdn2JmZUBzXkyM07FhcG4bLJVjhQ==}
+  /svag-prettier@0.1.2:
+    resolution: {integrity: sha512-ljddjr2p7gJOp4qFeksiLgGWpowPs2qu90lO5oRSqJwV8hqW81fJe+PgNPtztyye7+xtNR68H6fNCu+oJ24Ovw==}
     dependencies:
       prettier: 3.2.5
     dev: true
