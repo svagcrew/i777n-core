@@ -14,14 +14,14 @@ devDependencies:
     specifier: ^5.0.5
     version: 5.0.5
   svag-lint:
-    specifier: ^0.1.5
-    version: 0.1.5(@types/node@20.12.7)(prettier@3.2.5)
+    specifier: ^0.1.6
+    version: 0.1.6(@types/node@20.12.7)(prettier@3.2.5)
   svag-prettier:
     specifier: ^0.1.2
     version: 0.1.2
   svag-ts:
-    specifier: ^0.1.2
-    version: 0.1.2
+    specifier: ^0.1.5
+    version: 0.1.5
   ts-node:
     specifier: ^10.9.2
     version: 10.9.2(@types/node@20.12.7)(typescript@5.4.5)
@@ -1354,8 +1354,8 @@ packages:
       - babel-plugin-macros
     dev: true
 
-  /svag-lint@0.1.5(@types/node@20.12.7)(prettier@3.2.5):
-    resolution: {integrity: sha512-jjy1P5ewTV+4ZYjWZSm7903etSS7ewTzMPwmU/JtiqPVCiStknM+zRLKuehOdKIwPOqETDWfrXl8AHUaYNk+gA==}
+  /svag-lint@0.1.6(@types/node@20.12.7)(prettier@3.2.5):
+    resolution: {integrity: sha512-gkmIq5Va26s5mXRPNmMDraUd505x30Likv3DfEkYR3BrXTWJ1UO7+FmV0VbkPAl8hr6gUdtTd71LfZwKzuc03g==}
     hasBin: true
     dependencies:
       '@eslint/js': 9.0.0
@@ -1385,10 +1385,11 @@ packages:
       prettier: 3.2.5
     dev: true
 
-  /svag-ts@0.1.2:
-    resolution: {integrity: sha512-yC0+XJzGJ7SyQ1TCYtH/XiOg1yW7EDZ9CU+6AArP99RWs435HL6KTaKtHccFXG6tUk2ANBO1Ia8dF193PDq6sg==}
+  /svag-ts@0.1.5:
+    resolution: {integrity: sha512-FCryhZ0vXf0paF7r/w2AOsC84qUPqWqzaYVU0Xg/szA1EwEPAipAQmhlKdtYvY/ldOe7HGrVZTGHUXsVtTmeIQ==}
     dependencies:
       typescript: 5.4.5
+      typescript-transform-paths: 3.4.7(typescript@5.4.5)
     dev: true
 
   /synckit@0.8.8:
@@ -1478,6 +1479,15 @@ packages:
       typescript: 5.4.5
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /typescript-transform-paths@3.4.7(typescript@5.4.5):
+    resolution: {integrity: sha512-1Us1kdkdfKd2unbkBAOV2HHRmbRBYpSuk9nJ7cLD2hP4QmfToiM/VpxNlhJc1eezVwVqSKSBjNSzZsK/fWR/9A==}
+    peerDependencies:
+      typescript: '>=3.6.5'
+    dependencies:
+      minimatch: 3.1.2
+      typescript: 5.4.5
     dev: true
 
   /typescript@5.4.5:
