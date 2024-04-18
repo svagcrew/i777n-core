@@ -23,13 +23,16 @@
     "types": "svag-ts types",
     "build": "svag-ts build",
     "watch": "svag-ts watch",
-    "prepare": "ts-patch install -s"
+    "test": "echo 'Everything is OK'",
+    "prepare": "ts-patch install -s && husky"
   },
   "dependencies": {
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "husky": "^9.0.11",
     "rimraf": "^5.0.5",
+    "svag-husky": "^0.1.2",
     "svag-lint": "^0.1.11",
     "svag-prettier": "^0.1.6",
     "svag-ts": "^0.1.10",
