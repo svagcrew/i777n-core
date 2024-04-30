@@ -27,9 +27,15 @@
     "prepare": "ts-patch install -s && husky"
   },
   "dependencies": {
+    "dedent": "^1.5.3",
+    "lodash": "^4.17.21",
+    "openai": "^4.39.0",
+    "svag-deep-map": "^0.1.2",
+    "tiktoken": "^1.0.14",
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/lodash": "^4.17.0",
     "husky": "^9.0.11",
     "rimraf": "^5.0.5",
     "svag-husky": "^0.1.2",
