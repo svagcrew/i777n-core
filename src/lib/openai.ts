@@ -40,13 +40,17 @@ export const translateWithOpenai = async ({
   flatDistContent,
   notTranslatedKeys,
   openaiApiKey,
-  verbose = true,
+  showOldDistData = false,
+  showNotChangedData = false,
+  verbose = false,
 }: {
   srcLang: string
   distLang: string
   flatSrcContent: Record<string, string>
   flatDistContent: Record<string, string>
   notTranslatedKeys: string[]
+  showOldDistData?: boolean
+  showNotChangedData?: boolean
   openaiApiKey?: string
   verbose?: boolean
 }) => {
@@ -58,17 +62,30 @@ export const translateWithOpenai = async ({
     apiKey: openaiApiKey,
   })
   const chatGptModel = 'gpt-4-turbo'
+  if (!notTranslatedKeys.length) {
+    return { updatedFlatDistContent: flatDistContent, requestContent: '', price: 0 }
+  }
+
+  const flatSrcContentSuitable = showNotChangedData
+    ? flatSrcContent
+    : Object.fromEntries(Object.entries(flatSrcContent).filter(([key]) => notTranslatedKeys.includes(key)))
   const originalContentPart = dedent`
     New original content, language ${srcLang}:
-    ${Object.entries(flatSrcContent)
+    ${Object.entries(flatSrcContentSuitable)
       .map(([key, value]) => `${key}: ${value}`)
       .join('\n')}
   `
-  const translatedContentPart = !Object.entries(flatDistContent).length
-    ? null
-    : dedent`
+
+  const flatDistContentSuitable = showNotChangedData
+    ? flatDistContent
+    : Object.fromEntries(Object.entries(flatDistContent).filter(([key]) => notTranslatedKeys.includes(key)))
+  const translatedContentPart =
+    !showOldDistData || !Object.entries(flatDistContentSuitable).length
+      ? null
+      : dedent`
     Previously translated content, language ${distLang}:
-    ${Object.entries(flatDistContent)
+    ${Object.entries(flatDistContentSuitable)
+      .filter(([key]) => showNotChangedData || notTranslatedKeys.includes(key))
       .map(([key, value]) => `${key}: ${value}`)
       .join('\n')}
   `

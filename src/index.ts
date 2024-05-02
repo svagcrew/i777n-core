@@ -208,6 +208,32 @@ export const isFullyTranslatedByI777Info = ({ info, lang }: { info: I777Info; la
   return !getNotTranslatedKeysByI777Info({ info, lang }).notTranslatedKeys.length
 }
 
+export const check = async ({
+  content,
+  meta,
+  srcLang,
+  distLang,
+}: {
+  content: Record<string, any>
+  meta: I777Meta
+  srcLang: I777LangCode
+  distLang: I777LangCode
+}) => {
+  if (srcLang === distLang) {
+    return { willBeTranslated: false, notTranslatedKeys: [], message: 'Source and destination languages are the same' }
+  }
+  const { info } = getI777Info({ meta, content, srcLang })
+  const { flatContent: flatSrcContent } = getFlatI777ContentByI777Content({ content })
+  const { notTranslatedKeys } = getNotTranslatedKeysByI777Info({ info, lang: distLang })
+  if (Object.keys(flatSrcContent).length === 0) {
+    return { willBeTranslated: false, notTranslatedKeys, message: 'There are no keys in source content' }
+  }
+  if (!notTranslatedKeys.length) {
+    return { willBeTranslated: false, notTranslatedKeys, message: 'There are no keys to translate' }
+  }
+  return { willBeTranslated: true, notTranslatedKeys, message: 'There are keys to translate' }
+}
+
 export const translate = async ({
   content,
   meta,
@@ -227,12 +253,15 @@ export const translate = async ({
   const { info } = getI777Info({ meta, content, srcLang })
   const { flatContent: flatSrcContent } = getFlatI777ContentByI777Content({ content })
   const { flatContent: flatDistContent } = getFlatI777ContentByI777Meta({ meta, lang: distLang })
+  const { content: oldDistContent } = flatI777ContentToI777Content({
+    flatContent: flatDistContent,
+  })
   const { notTranslatedKeys } = getNotTranslatedKeysByI777Info({ info, lang: distLang })
   if (Object.keys(flatSrcContent).length === 0) {
-    return { content, meta, wasTranslated: false, message: 'There are no keys in source content' }
+    return { content: oldDistContent, meta, wasTranslated: false, message: 'There are no keys in source content' }
   }
   if (!notTranslatedKeys.length) {
-    return { content, meta, wasTranslated: false, message: 'There are no keys to translate' }
+    return { content: oldDistContent, meta, wasTranslated: false, message: 'There are no keys to translate' }
   }
 
   const { updatedFlatDistContent } = await translateWithOpenai({
@@ -261,4 +290,37 @@ export const translate = async ({
     }
   }
   return { content: distContent, meta: distMeta, wasTranslated: true }
+}
+
+export const fix = async ({
+  srcContent,
+  distContent,
+  meta,
+  srcLang,
+  distLang,
+}: {
+  srcContent: Record<string, any>
+  distContent: Record<string, any>
+  meta: I777Meta
+  srcLang: I777LangCode
+  distLang: I777LangCode
+}) => {
+  const { flatContent: flatSrcContent } = getFlatI777ContentByI777Content({ content: srcContent })
+  const { flatContent: flatDistContent } = getFlatI777ContentByI777Content({ content: distContent })
+  const flatDistContentKeys = Object.keys(flatDistContent)
+  const distMeta = _.cloneDeep(meta)
+  for (const key of flatDistContentKeys) {
+    const srcValue = flatSrcContent[key]
+    const distValue = flatDistContent[key]
+    if (!srcValue) {
+      continue
+    }
+    distMeta[`${distLang}.${key}`] = {
+      srcLang,
+      srcValue,
+      distLang,
+      distValue,
+    }
+  }
+  return { meta: distMeta }
 }
