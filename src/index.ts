@@ -247,21 +247,37 @@ export const translate = async ({
   distLang: I777LangCode
   openaiApiKey?: string
 }) => {
+  const { meta: normalizedMeta } = normalizeI777Meta({
+    metaSource: meta,
+    distLangs: [distLang],
+    srcLang,
+    content,
+  })
   if (srcLang === distLang) {
-    return { content, meta, wasTranslated: false }
+    return { content, meta: normalizedMeta, wasTranslated: false }
   }
-  const { info } = getI777Info({ meta, content, srcLang })
+  const { info } = getI777Info({ meta: normalizedMeta, content, srcLang })
   const { flatContent: flatSrcContent } = getFlatI777ContentByI777Content({ content })
-  const { flatContent: flatDistContent } = getFlatI777ContentByI777Meta({ meta, lang: distLang })
+  const { flatContent: flatDistContent } = getFlatI777ContentByI777Meta({ meta: normalizedMeta, lang: distLang })
   const { content: oldDistContent } = flatI777ContentToI777Content({
     flatContent: flatDistContent,
   })
   const { notTranslatedKeys } = getNotTranslatedKeysByI777Info({ info, lang: distLang })
   if (Object.keys(flatSrcContent).length === 0) {
-    return { content: oldDistContent, meta, wasTranslated: false, message: 'There are no keys in source content' }
+    return {
+      content: oldDistContent,
+      meta: normalizedMeta,
+      wasTranslated: false,
+      message: 'There are no keys in source content',
+    }
   }
   if (!notTranslatedKeys.length) {
-    return { content: oldDistContent, meta, wasTranslated: false, message: 'There are no keys to translate' }
+    return {
+      content: oldDistContent,
+      meta: normalizedMeta,
+      wasTranslated: false,
+      message: 'There are no keys to translate',
+    }
   }
 
   const { updatedFlatDistContent } = await translateWithOpenai({
@@ -275,7 +291,7 @@ export const translate = async ({
   const { content: distContent } = flatI777ContentToI777Content({
     flatContent: updatedFlatDistContent,
   })
-  const distMeta = _.cloneDeep(meta)
+  const distMeta = _.cloneDeep(normalizedMeta)
   for (const key of notTranslatedKeys) {
     const srcValue = flatSrcContent[key]
     const distValue = updatedFlatDistContent[key]
