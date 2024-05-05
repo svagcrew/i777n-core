@@ -120,7 +120,10 @@ export const normalizeI777Meta = ({
   distLangs: I777LangCode[]
   content: Record<string, any>
 }) => {
-  const metaValid = zI777Meta.parse(metaSource)
+  const metaCleared = Object.fromEntries(
+    Object.entries(metaSource).filter(([, value]) => value.distValue && value.srcValue)
+  )
+  const metaValid = zI777Meta.parse(metaCleared)
   const { meta: metaNormalized } = getClearI777Meta({ srcLang, distLangs, content })
   for (const key of Object.keys(metaNormalized)) {
     if (metaValid[key]) {
@@ -295,7 +298,7 @@ export const translate = async ({
   for (const key of notTranslatedKeys) {
     const srcValue = flatSrcContent[key]
     const distValue = updatedFlatDistContent[key]
-    if (!distValue) {
+    if (!distValue || !srcValue) {
       continue
     }
     distMeta[`${distLang}.${key}`] = {
