@@ -1,3 +1,4 @@
+/* eslint-disable n/no-process-env */
 /* eslint-disable no-console */
 import dedent from 'dedent'
 import OpenAI from 'openai'
@@ -14,17 +15,17 @@ export const getChatGptTextRequestPrice = ({
   chatGptModel: 'gpt-4-turbo'
 }) => {
   const pricePer1kInputTokens = {
-    'gpt-4-turbo': 0.00008,
+    'gpt-4-turbo': 0.000_08,
   }[chatGptModel]
   const pricePer1kOutputTokens = {
-    'gpt-4-turbo': 0.00008,
+    'gpt-4-turbo': 0.000_08,
   }[chatGptModel]
-  return (promptTokensCount * pricePer1kInputTokens + completionTokensCount * pricePer1kOutputTokens) / 1000
+  return (promptTokensCount * pricePer1kInputTokens + completionTokensCount * pricePer1kOutputTokens) / 1_000
 }
 
 export const getChatGptModelTokensLimit = (chatGptModel: 'gpt-4-turbo') => {
   return {
-    'gpt-4-turbo': 128000,
+    'gpt-4-turbo': 128_000,
   }[chatGptModel]
 }
 
@@ -118,13 +119,10 @@ export const translateWithOpenai = async ({
         parameters: {
           type: 'object',
           properties: {
-            ...notTranslatedKeys.reduce(
-              (acc, key) => {
-                acc[key] = { type: 'string' }
-                return acc
-              },
-              {} as Record<string, { type: string }>
-            ),
+            ...notTranslatedKeys.reduce<Record<string, { type: string }>>((acc, key) => {
+              acc[key] = { type: 'string' }
+              return acc
+            }, {}),
           },
           required: notTranslatedKeys,
         },
@@ -138,7 +136,7 @@ export const translateWithOpenai = async ({
   const parsedFnArguments = (() => {
     try {
       return JSON.parse(serializedFnArguments)
-    } catch (error: any) {
+    } catch {
       throw new Error(`Failed to parse function arguments: ${serializedFnArguments}`)
     }
   })()

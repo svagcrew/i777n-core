@@ -97,7 +97,7 @@ export const getClearI777Meta = ({
       const valueString = typeof value === 'string' ? value : typeof value === 'number' ? value.toString() : null
       if (valueString) {
         meta[`${lang}.${path}`] = {
-          srcLang: srcLang,
+          srcLang,
           srcValue: valueString,
           distLang: lang,
           distValue: lang === srcLang ? valueString : null,
