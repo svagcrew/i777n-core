@@ -32,7 +32,7 @@
     "dedent": "^1.5.3",
     "lodash": "^4.17.21",
     "openai": "^4.39.0",
-    "svag-deep-map": "^0.1.9",
+    "svag-deep-map": "^0.1.10",
     "tiktoken": "^1.0.14",
     "zod": "^3.22.4"
   },
@@ -43,10 +43,10 @@
     "husky": "^9.0.11",
     "onchange": "^7.1.0",
     "rimraf": "^5.0.5",
-    "svag-husky": "^0.1.37",
-    "svag-lint": "^0.1.60",
-    "svag-prettier": "^0.1.51",
-    "svag-ts": "^0.1.56",
+    "svag-husky": "^0.1.39",
+    "svag-lint": "^0.1.62",
+    "svag-prettier": "^0.1.53",
+    "svag-ts": "^0.1.58",
     "tsc-alias": "^1.8.10",
     "typescript": "^5.4.5"
   }
