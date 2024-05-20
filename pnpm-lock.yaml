@@ -15,8 +15,8 @@ dependencies:
     specifier: ^4.39.0
     version: 4.39.0
   svag-deep-map:
-    specifier: ^0.1.10
-    version: 0.1.10
+    specifier: ^0.1.11
+    version: 0.1.11
   tiktoken:
     specifier: ^1.0.14
     version: 1.0.14
@@ -4830,8 +4830,8 @@ packages:
       - babel-plugin-macros
     dev: true
 
-  /svag-deep-map@0.1.10:
-    resolution: {integrity: sha512-pBF8U0YRm8SXKivl42z6MqDG7qNE70XpjpojZKD9JkPxi3j+3R99rW4X834mOLxyUWcj6ex3nP8CgEhHdUCH9A==}
+  /svag-deep-map@0.1.11:
+    resolution: {integrity: sha512-oUvsLWmMAjBFtj56WHMaXL1lHgLNEQAVCTEdSpZrpSY5cOmU8COLGk2rsY1gJc4rhe/SYV6tEr4tLxCcKJuEmw==}
     dependencies:
       lodash: 4.17.21
     dev: false
