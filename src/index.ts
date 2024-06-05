@@ -1,4 +1,4 @@
-import { translateWithOpenai } from '@/lib/openai'
+import { translateWithOpenai } from '@/lib/openai.js'
 import _ from 'lodash'
 import { deepMap } from 'svag-deep-map'
 import z from 'zod'
