@@ -1,6 +1,6 @@
 {
   "name": "i777n-core",
-  "version": "0.1.31",
+  "version": "0.1.32",
   "homepage": "https://github.com/svagcrew/i777n-core",
   "repository": {
     "type": "git",
@@ -13,20 +13,19 @@
     "name": "Sergei Dmitriev",
     "url": "https://sergei.svag.group"
   },
-  "type": "module",
   "main": "./dist/index.js",
   "files": [
     "src/**/*",
     "dist/**/*"
   ],
   "scripts": {
-    "lint": "svag-lint lint",
-    "prettify": "svag-prettier prettify",
-    "types": "svag-ts types",
     "build": "svag-ts build",
-    "watch": "svag-ts watch",
+    "lint": "svag-lint lint",
+    "prepare": "husky",
+    "prettify": "svag-prettier prettify",
     "test": "echo 'Everything is OK'",
-    "prepare": "husky"
+    "types": "svag-ts types",
+    "watch": "svag-ts watch"
   },
   "dependencies": {
     "dedent": "^1.5.3",
@@ -49,5 +48,6 @@
     "svag-ts": "^0.1.68",
     "tsc-alias": "^1.8.10",
     "typescript": "^5.4.5"
-  }
+  },
+  "type": "module"
 }
