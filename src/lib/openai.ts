@@ -12,25 +12,27 @@ export const getChatGptTextRequestPrice = ({
 }: {
   promptTokensCount: number
   completionTokensCount: number
-  chatGptModel: 'gpt-4-turbo'
+  chatGptModel: 'gpt-4o'
 }) => {
   const pricePer1kInputTokens = {
-    'gpt-4-turbo': 0.000_08,
+    'gpt-4o': 0.000_08,
   }[chatGptModel]
   const pricePer1kOutputTokens = {
-    'gpt-4-turbo': 0.000_08,
+    'gpt-4o': 0.000_08,
   }[chatGptModel]
   return (promptTokensCount * pricePer1kInputTokens + completionTokensCount * pricePer1kOutputTokens) / 1_000
 }
 
-export const getChatGptModelTokensLimit = (chatGptModel: 'gpt-4-turbo') => {
+export const getChatGptModelTokensLimit = (chatGptModel: 'gpt-4o') => {
   return {
-    'gpt-4-turbo': 128_000,
+    'gpt-4o': 128_000,
   }[chatGptModel]
 }
 
-export const getTokensCount = ({ text, chatGptModel }: { text: string; chatGptModel: 'gpt-4-turbo' }) => {
-  const enc = encoding_for_model(chatGptModel)
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const getTokensCount = ({ text, chatGptModel }: { text: string; chatGptModel: 'gpt-4o' }) => {
+  // const enc = encoding_for_model(chatGptModel)
+  const enc = encoding_for_model('gpt-4-turbo')
   return enc.encode(text).length
 }
 
@@ -62,7 +64,7 @@ export const translateWithOpenai = async ({
   const openai = new OpenAI({
     apiKey: openaiApiKey,
   })
-  const chatGptModel = 'gpt-4-turbo'
+  const chatGptModel = 'gpt-4o'
   if (!notTranslatedKeys.length) {
     return { updatedFlatDistContent: flatDistContent, requestContent: '', price: 0 }
   }
